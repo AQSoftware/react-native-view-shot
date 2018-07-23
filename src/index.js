@@ -240,13 +240,11 @@ export default class ViewShot extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps: Props) {
-    if (nextProps.captureMode !== this.props.captureMode) {
-      this.syncCaptureLoop(nextProps.captureMode);
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.captureMode !== this.props.captureMode) {
+      this.syncCaptureLoop(this.props.captureMode);
     }
-  }
 
-  componentDidUpdate() {
     if (this.props.captureMode === "update") {
       this.capture();
     }
